@@ -1,0 +1,30 @@
+:root{ /*regra para não precisar repetir cor - raiz do documento html*/
+    --title-color: #322153; /*nome do atalho */
+    --primary-color: #34cb79;
+}
+
+* { /*para reposicionar o texto de acordo com a imagem referencia todos os seletores*/
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /*o padding não esticará a caixa*/
+}
+
+html{
+     font-family: Roboto, sans-serif;
+    }
+
+body{
+    background: #f0f0f5;
+    -webkit-font-smoothing: antialiased;  /*para o Chrome - apresentação da fonte */
+}
+
+a{
+    text-decoration: none;
+}
+
+h1, h2, h3, h4, h5, h6{
+    font-family: Ubuntu, sans-serif;
+    color: var(--title-color);
+}
+    /* BOX MODEL
+    modelo de caixa - PROPRIEDADE DAS CAIXAS*/

@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultado da pesquisa</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Ubuntu:wght@700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../static/style/main.css">
+    <link rel="stylesheet" href="../static/style/profile.css">
+    <link rel="stylesheet" href="responsive.css">
+    
+    
+</head>
+
+<body>
+
+    <div id="page-search-results">
+
+        <header>
+            <img src="../static/svg/logo.svg" alt="Logomarca">
+            <div class="header-links">
+                <a href="/"><span class="arrow"></span>Voltar para a home</a>
+                <a href="/logout"><span class="logout"></span>Sair</a>
+            </div>
+        </header>
+
+        <main>
+
+            <h4> <strong> {{ cards|length }} </strong>encontrados</h4>
+
+            <div class="cards">
+                {% for card in cards %}
+                <div class="card">
+                    <img src="https://images.unsplash.com/photo-1528323273322-d81458248d40?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=801&q=80" alt= "Colectoria">
+                    <h2><a href="{{ url_for('edit_point', name=card['name'], addr1=card['addr1'], addr2=card['addr2'], state=card['state'], city=card['city'], id=card['id']) }}">{{card['name']}}</h2></a>
+                    <h3>
+                        <div class="items-grid">
+                            {% if 1 in card['tags'] %}
+                            <li data-id="1">
+                                <img src="../static/svg/lampadas.svg" alt="Lampadas">
+                            </li>
+                            {% endif %}                  
+                            {% if 2 in card['tags'] %}
+                            <li data-id="2">
+                                <img src="../static/svg/baterias.svg" alt="Pilhas e baterias">
+                            </li>
+
+                            {% endif %}                  
+                            {% if 3 in card['tags'] %}
+                            <li data-id="3">
+                                <img src="../static/svg/papeis-papelao.svg" alt="Papéis e Papelão">
+                            </li>
+        
+                            {% endif %}                  
+                            {% if 4 in card['tags'] %}
+                            <li data-id="4">
+                                <img src="../static/svg/eletronicos.svg" alt="Resíduos Eletrônicos">
+                            </li>
+        
+                            {% endif %}                  
+                            {% if 5 in card['tags'] %}
+                            <li data-id="5">
+                                <img src="../static/svg/organicos.svg" alt="Resíduos Orgânicos">
+                            </li>
+        
+                            {% endif %}                  
+                            {% if 6 in card['tags'] %}
+                            <li data-id="6">
+                                <img src="../static/svg/oleo.svg" alt="Óleo de Cozinha">
+                            </li>
+                            {% endif %}                  
+                            
+                        </div>
+                    </h3>
+                    <p>
+                        {{card['city']}}, {{card['state']}} <br/>
+                        {{card['addr1']}}<br/>
+                        Número {{card['addr2']}}
+                    </p>
+                </div>
+                {% endfor %}
+            </div>
+            
+
+        </main>
+
+    </div>
+
+</body>
+</html>

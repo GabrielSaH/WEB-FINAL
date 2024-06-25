@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Criar um ponto de coleta</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&family=Ubuntu:wght@700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../static/style/main.css">
+    <link rel="stylesheet" href="../static/style/create-point.css">
+    <link rel="stylesheet" href="../static/style/responsive.css">
+</head>
+<body>
+    <div id="page-create-point">
+        <header>
+            <img src="../static/svg/logo.svg" alt="Logomarca">
+            <a href="/"><span></span>Voltar para a home</a>
+        </header>
+
+        <form id="create-point-form" action="{{ url_for('sub_edit', id=card['id']) }}" method="POST">
+            <h1>Cadastro do ponto de coleta</h1>
+
+            <fieldset>
+                <legend>
+                    <h2>Dados da entidade</h2>
+                </legend>
+
+                <div class="field">
+                    <label for="name">Nome da entidade</label>
+                    <input type="text" name="name" required value="{{ card['name'] }}">
+                </div>
+
+                <div class="field-group">
+                    <div class="field">
+                        <label for="address">Endereço</label>
+                        <input type="text" name="address" required value="{{ card['addr1'] }}">
+                    </div>
+
+                    <div class="field">
+                        <label for="address2">Número/complemento</label>
+                        <input type="text" name="address2" required value="{{ card['addr2'] }}">
+                    </div>
+                </div>
+
+                <div class="field-group">
+                    <div class="field">
+                        <label for="state">Estado</label>
+                        <select name="uf" required>
+                            <option value="{{ card['uf'] }}">Selecione o Estado</option>
+                        </select>
+
+                        <input type="hidden" name="state">
+                    </div>
+
+                    <div class="field">
+                        <label for="city">Cidade</label>
+                        <select name="city" disabled required>
+                            <option value="{{ card['city'] }}">Selecione a cidade</option>
+                        </select>
+                    </div>
+                </div>
+            </fieldset>
+
+            <fieldset>
+                <legend>
+                    <h2>Itens de coleta</h2>
+                </legend>
+
+                <div class="items-grid">
+                    <li data-id="1">
+                        <img src="../static/svg/lampadas.svg" alt="Lampadas">
+                        <span>Lâmpadas</span>
+                    </li>
+                    <li data-id="2">
+                        <img src="../static/svg/baterias.svg" alt="Pilhas e baterias">
+                        <span>Pilhas e baterias</span>
+                    </li>
+                    <li data-id="3">
+                        <img src="../static/svg/papeis-papelao.svg" alt="Papéis e Papelão">
+                        <span>Papéis e Papelão</span>
+                    </li>
+                    <li data-id="4">
+                        <img src="../static/svg/eletronicos.svg" alt="Resíduos Eletrônicos">
+                        <span>Resíduos Eletrônicos</span>
+                    </li>
+                    <li data-id="5">
+                        <img src="../static/svg/organicos.svg" alt="Resíduos Orgânicos">
+                        <span>Resíduos Orgânicos</span>
+                    </li>
+                    <li data-id="6">
+                        <img src="../static/svg/oleo.svg" alt="Óleo de Cozinha">
+                        <span>Óleo de Cozinha</span>
+                    </li>
+                </div>
+
+                <input type="hidden" name="items">
+            </fieldset>
+            <button type="submit">Editar Ponto De Coleta</button>
+        </form>
+
+    </div>
+    <script src="../static/javaScript/create-point.js"></script>
+</body>
+</html>

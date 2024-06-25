@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Ecoleta - signin</title>
+  <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.2.0/css/all.css'>
+  <link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.2.0/css/fontawesome.css'>
+  <link rel="stylesheet" href="../static/style/log.css">
+  <style>
+    .error-message {
+      color: red;
+      font-size: 12px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="screen">
+      <div class="screen__content">
+        <form class="login" style="padding-top: 30px;" action="sub_signin" method="POST" id="signupForm">
+          <div class="login__field">
+            <i class="login__icon fas fa-user"></i>
+            <input type="text" class="login__input" placeholder="Nome" name="nome" id="nome">
+            <div id="nomeError" class="error-message"></div>
+          </div>
+          <div class="login__field">
+            <i class="login__icon fas fa-id-card"></i>
+            <input type="text" class="login__input" placeholder="CPF" name="cpf" id="cpf">
+            <div id="cpfError" class="error-message"></div>
+          </div>
+          <div class="login__field">
+            <i class="login__icon fas fa-envelope"></i>
+            <input type="email" class="login__input" placeholder="Email" name="email" id="email">
+            <div id="emailError" class="error-message"></div>
+          </div>
+          <div class="login__field">
+            <i class="login__icon fas fa-lock"></i>
+            <input type="password" class="login__input" placeholder="Senha" name="senha" id="senha">
+            <div id="senhaError" class="error-message"></div>
+          </div>
+          <div class="login__field">
+            <i class="login__icon fas fa-lock"></i>
+            <input type="password" class="login__input" placeholder="Confirme a Senha" name="confirma_senha" id="confirmaSenha">
+            <div id="confirmaSenhaError" class="error-message"></div>
+          </div>
+          <button class="button login__submit" type="submit" id="submitBtn">
+            <span class="button__text">Register Now</span>
+            <i class="button__icon fas fa-chevron-right"></i>
+          </button>				
+        </form>
+        <div class="registration" style="margin-top: 0px;">
+          <a href="login" class="register__link">Entrar</a>
+        </div>
+      </div>
+      <div class="screen__background">
+        <span class="screen__background__shape screen__background__shape4"></span>
+        <span class="screen__background__shape screen__background__shape3"></span>		
+        <span class="screen__background__shape screen__background__shape2"></span>
+        <span class="screen__background__shape screen__background__shape1"></span>
+      </div>		
+    </div>
+  </div>
+
+  <script>
+    document.getElementById('signupForm').addEventListener('submit', function(event) {
+      // Prevent form submission
+      event.preventDefault();
+
+      // Clear previous error messages
+      clearErrors();
+
+      // Get form values
+      var nome = document.getElementById('nome').value.trim();
+      var cpf = document.getElementById('cpf').value.trim();
+      var email = document.getElementById('email').value.trim();
+      var senha = document.getElementById('senha').value;
+      var confirmaSenha = document.getElementById('confirmaSenha').value;
+
+      // Validation flag
+      var isValid = true;
+
+      // Validate nome
+      if (nome === '') {
+        isValid = false;
+        document.getElementById('nomeError').textContent = 'Nome é obrigatório.';
+      }
+
+      // Validate CPF (dummy validation for length)
+      if (cpf === '' || cpf.length !== 11) {
+        isValid = false;
+        document.getElementById('cpfError').textContent = 'CPF inválido.';
+      }
+
+      // Validate email using regex pattern
+      var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if (!emailPattern.test(email)) {
+        isValid = false;
+        document.getElementById('emailError').textContent = 'Email inválido.';
+      }
+
+      // Validate senha length
+      if (senha.length < 5) {
+        isValid = false;
+        document.getElementById('senhaError').textContent = 'Senha deve ter pelo menos 5 caracteres.';
+      }
+
+      // Validate senha == confirmaSenha
+      if (senha !== confirmaSenha) {
+        isValid = false;
+        document.getElementById('confirmaSenhaError').textContent = 'As senhas não coincidem.';
+      }
+
+      // If valid, submit the form (can add AJAX request here)
+      if (isValid) {
+        // Form submission logic (AJAX or direct form submission)
+        document.getElementById('signupForm').submit();
+      }
+    });
+
+    // Function to clear error messages
+    function clearErrors() {
+      var errorElements = document.getElementsByClassName('error-message');
+      for (var i = 0; i < errorElements.length; i++) {
+        errorElements[i].textContent = '';
+      }
+    }
+  </script>
+</body>
+</html>
